@@ -22,7 +22,7 @@ build: check-vars clean
 	cp plugin.cfg $(GOPATH)/src/github.com/coredns/coredns
 	cd $(GOPATH)/src/github.com/coredns/coredns; GOPATH=$(GOPATH) go generate
 	cd $(GOPATH)/src/github.com/coredns/coredns; GOPATH=$(GOPATH) go get -v -d -t .
-	cd $(GOPATH)/src/github.com/coredns/coredns; GOPATH=$(GOPATH) PATH=$(GOPATH)/bin:$(PATH) make
+	cd $(GOPATH)/src/github.com/coredns/coredns; GOPATH=$(GOPATH) PATH="$(GOPATH)/bin:$(PATH)" make
 	cd $(GOPATH)/src/github.com/coredns/coredns; GOPATH=$(GOPATH) go build -x -v -ldflags="-X github.com/coredns/coredns/coremain.GitCommit=$(VERSION)" -asmflags="-trimpath=$(GOPATH)" -gcflags="-trimpath=$(GOPATH)" -o $(GOPATH)/bin/coredns
 
 package: build
